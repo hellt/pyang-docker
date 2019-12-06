@@ -2,7 +2,7 @@
 This repo contains the [dockerfile](Dockerfile) to build an image with the [PyYANG](https://github.com/mbj4668/pyang) tool installed inside.
 
 ## How to build/install
-Pull the image from the docker hub with `docker pull hellt/pyang`.
+Pull the [hellt/pyang](https://hub.docker.com/repository/docker/hellt/pyang) image from the docker hub with `docker pull hellt/pyang`.
 
 To locally build the image clone the repo and use `docker build -t <your_repo>/<project>:<tag> .` command.
 
