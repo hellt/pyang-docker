@@ -24,5 +24,24 @@ Along with `pyang`, the following tools are part of the image:
 - yang2dsdl
 - yang2html
 
+### Additional enhancements
+##### XML skeleton wrapper
+To simplify the process of getting the XML skeleton for the data modelled in YANG and referenced by its model path the `xmlsk.sh` wrapper has been created. The sole purpose of this wrapper is to remove the prefix from the path string, since pyang's XML_SKELETON does not digest them.
+
+With `xmlsk.sh` wrapper the workflow of getting the XML skeleton boils down to the following steps:
+
+1. Take a YANG module's `M.yang` jstree (HTML) representation and get the node path (`P`) from the column named `Path`. To make an example: `/state:state/state:users/state:session/state:session-id`;
+2. run the `xmlsk.sh` wrapper with the both the node path and the YANG module referenced as follows:
+    ```bash
+    # using the node path and the model from step 1
+    docker run --rm -v $(pwd):/yang hellt/pyang xmlsk.sh "/state:state/state:users/state:session/state:session-id" nokia-state-combined.yang
+    ```
+3. As a result, you will be presented with an XML skeleton that you can use in your subtree filters.
+
+Under the hood, the following command is executed inside the container:
+```
+pyang -f sample-xml-skeleton --sample-xml-skeleton-path "/state/users/session/session-id" nokia-state-combined.yang
+```
+
 ## Tags
 The image is tagged with accordance to the PyYANG releases. The tag `2.1` means that PyYANG of version `2.1` is installed in the image. The untagged image will always represent the latest pyang version that was available at the time of the build process.

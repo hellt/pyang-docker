@@ -43,4 +43,6 @@ COPY --from=builder /usr/bin/json2xml /usr/bin/json2xml
 COPY --from=builder /usr/bin/yang2dsdl /usr/bin/yang2dsdl
 COPY --from=builder /usr/bin/yang2html /usr/bin/yang2html
 
+COPY xmlsk.sh /usr/local/bin/
+
 WORKDIR /yang
