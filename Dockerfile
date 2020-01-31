@@ -9,7 +9,7 @@ RUN apk --no-cache add \
     libxslt-dev \
     build-base && \
     # pyang
-    pip3 install --upgrade pip pyang==2.1 && \
+    pip3 install --upgrade pip pyang==2.1.1 && \
     find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
     find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
@@ -31,6 +31,11 @@ RUN apk --no-cache add \
     # cleanup
     find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
     find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
+
+COPY --from=builder /usr/lib/libx*.* /usr/lib/
+COPY --from=builder /usr/lib/libexslt.so.0 /usr/lib/
+COPY --from=builder /usr/lib/libgcrypt.so.20 /usr/lib/
+COPY --from=builder /usr/lib/libgpg-error.so.0 /usr/lib/
 
 COPY --from=builder /usr/lib/python3.6/site-packages/ /usr/lib/python3.6/site-packages/
 COPY --from=builder /usr/bin/pyang /usr/bin/pyang
