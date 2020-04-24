@@ -9,7 +9,7 @@ RUN apk --no-cache add \
     libxslt-dev \
     build-base && \
     # pyang
-    pip3 install --upgrade pip pyang==2.1.1 && \
+    pip3 install --upgrade pip pyang==2.2.1 && \
     find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf && \
     find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 

@@ -1,3 +1,8 @@
+# usage
+# build the image
+## bash build.sh 2.2.1
+# build the image and tag it also as latest
+## bash build.sh 2.2.1 latest
 PYANG_VER="$1"
 
 sed -i -E "s/pyang==[[:digit:]]\.[[:digit:]]\.?[[:digit:]]?/pyang==$PYANG_VER/g" Dockerfile
