@@ -1,4 +1,4 @@
-# PyYANG docker image
+# PYANG docker image
 This repo contains the [dockerfile](Dockerfile) to build an image with the [PyYANG](https://github.com/mbj4668/pyang) tool installed inside.
 
 ## How to build/install
