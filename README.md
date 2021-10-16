@@ -1,8 +1,12 @@
 # PYANG docker image
 This repo contains the [dockerfile](Dockerfile) to build an image with the [PyYANG](https://github.com/mbj4668/pyang) tool installed inside.
 
+As well as the following plugins are included:
+
+* [Openconfig plugins](https://github.com/openconfig/oc-pyang) - installed at `/opt/pyang-oc-plugin`
+
 ## How to build/install
-Pull the [hellt/pyang](https://hub.docker.com/repository/docker/hellt/pyang) image from the docker hub with `docker pull hellt/pyang`.
+Pull the `hellt/pyang` image from GitHub container registry with `docker pull ghcr.io/hellt/pyang`.
 
 To locally build the image clone the repo and use `docker build -t <your_repo>/<project>:<tag> .` command.
 
@@ -15,7 +19,7 @@ To locally build the image clone the repo and use `docker build -t <your_repo>/<
 # navigate to a dir with the YANG model(s) and run the container
 # assuming the nokia-conf-combined.yang model is in the current directory
 ## create a tree representation of a yang model
-docker run --rm -v $(pwd):/yang hellt/pyang pyang -f tree nokia-conf-combined.yang
+docker run --rm -v $(pwd):/yang ghcr.io/hellt/pyang pyang -f tree nokia-conf-combined.yang
 ```
 Along with `pyang`, the following tools are part of the image:
 
@@ -44,4 +48,6 @@ pyang -f sample-xml-skeleton --sample-xml-skeleton-path "/state/users/session/se
 ```
 
 ## Tags
-The image is tagged with accordance to the PyYANG releases. The tag `2.1` means that PyYANG of version `2.1` is installed in the image. The untagged image will always represent the latest pyang version that was available at the time of the build process.
+The image is tagged with accordance to the PyYANG releases. The tag `2.5.0` means that PyYANG of version `2.5.0` is installed in the image. The untagged image will always represent the latest pyang version that was available at the time of the build process.
+
+Check available tags here - https://github.com/hellt/pyang-docker/pkgs/container/pyang/versions
