@@ -20,7 +20,7 @@ docker build --build-arg PYANG_VER=${PYANG_VER} -t ${VERSION_TAG} -t ${PYPY_VER_
 docker build --build-arg PYANG_VER=${PYANG_VER} -t ${ALPINE_VER_TAG} -t ${ALPINE_TAG} -f alpine.Dockerfile .
 
 # push to ghcr
-# docker push --all-tags ghcr.io/hellt/pyang
+docker push --all-tags ghcr.io/hellt/pyang
 
 # if [ "$2" == "latest" ]; then
 #     docker tag hellt/pyang:$PYANG_VER hellt/pyang:latest
