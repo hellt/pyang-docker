@@ -5,13 +5,24 @@
 ## bash build.sh 2.2.1 latest
 PYANG_VER="$1"
 
-sed -i -E "s/pyang==[[:digit:]]\.[[:digit:]]\.?[[:digit:]]?/pyang==$PYANG_VER/g" Dockerfile
+PKG_TAG=ghcr.io/hellt/pyang
+PYPY_TAG=${PKG_TAG}:pypy
+ALPINE_TAG=${PKG_TAG}:alpine
+LATEST_TAG=${PKG_TAG}:latest
+VERSION_TAG=${PKG_TAG}:${PYANG_VER}
+PYPY_VER_TAG=${PKG_TAG}:${PYANG_VER}-pypy
+ALPINE_VER_TAG=${PKG_TAG}:${PYANG_VER}-alpine
 
-docker build -t hellt/pyang:$PYANG_VER .
+# PyPy
+docker build --build-arg PYANG_VER=${PYANG_VER} -t ${VERSION_TAG} -t ${PYPY_VER_TAG} -t ${PYPY_TAG} -t ${LATEST_TAG} -f pypy.Dockerfile .
 
-docker push hellt/pyang:$PYANG_VER
+# Alpine
+docker build --build-arg PYANG_VER=${PYANG_VER} -t ${ALPINE_VER_TAG} -t ${ALPINE_TAG} -f alpine.Dockerfile .
 
-if [ "$2" == "latest" ]; then
-    docker tag hellt/pyang:$PYANG_VER hellt/pyang:latest
-    docker push hellt/pyang:latest
-fi
+# push to ghcr
+# docker push --all-tags ghcr.io/hellt/pyang
+
+# if [ "$2" == "latest" ]; then
+#     docker tag hellt/pyang:$PYANG_VER hellt/pyang:latest
+#     docker push hellt/pyang:latest
+# fi
