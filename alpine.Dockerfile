@@ -4,7 +4,7 @@ WORKDIR /work
 
 RUN curl -LO https://github.com/openconfig/oc-pyang/archive/refs/heads/master.tar.gz && tar -zxvf master.tar.gz
 
-FROM python:3.9-alpine
+FROM python:3.10-alpine
 # Labels
 LABEL maintainer="dodin.roman@gmail.com" \
     org.label-schema.schema-version="1.0" \

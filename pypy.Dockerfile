@@ -4,7 +4,7 @@ WORKDIR /work
 
 RUN curl -LO https://github.com/openconfig/oc-pyang/archive/refs/heads/master.tar.gz && tar -zxvf master.tar.gz
 
-FROM pypy:3.9-slim
+FROM pypy:3.10-slim
 
 LABEL maintainer="dodin.roman@gmail.com" \
     org.label-schema.schema-version="1.0" \

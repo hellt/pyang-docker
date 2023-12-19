@@ -42,7 +42,7 @@ Along with `pyang`, the following tools are part of the image:
 
 ### Additional enhancements
 
-##### XML skeleton wrapper
+#### XML skeleton wrapper
 
 To simplify the process of getting the XML skeleton for the data modelled in YANG and referenced by its model path the `xmlsk.sh` wrapper has been created. The sole purpose of this wrapper is to remove the prefix from the path string, since pyang's XML_SKELETON does not digest them.
 
